@@ -5,22 +5,48 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const inputChangeHandler = (value, name) => {
+    setUserData({ ...userData, [name]: value });
+  };
+  const loginHandler = () => {
+    console.log(userData);
+    setUserData({
+      email: "",
+      password: "",
+    });
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
       <View style={styles.containerr}>
         <View style={styles.inpC}>
           <Text style={styles.label}>Email</Text>
-          <TextInput style={styles.inp} />
+          <TextInput
+            style={styles.inp}
+            onChangeText={(txt) => {
+              inputChangeHandler(txt, "email");
+            }}
+            value={userData.email}
+          />
         </View>
         <View style={styles.inpC}>
           <Text style={styles.label}>Password</Text>
-          <TextInput style={styles.inp} />
+          <TextInput
+            style={styles.inp}
+            onChangeText={(txt) => {
+              inputChangeHandler(txt, "password");
+            }}
+            value={userData.password}
+          />
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={loginHandler}>
           <Text style={styles.btnTxT}>Login</Text>
         </TouchableOpacity>
       </View>
