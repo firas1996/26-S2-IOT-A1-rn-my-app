@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import FirstComp from "./src/Components/FirstComp";
 import { useState } from "react";
+import Login from "./src/Screens/Login";
 
 export default function App() {
   const name = "Firas";
@@ -12,9 +13,10 @@ export default function App() {
   };
   return (
     <View style={styles.container}>
-      <Text>Hello, {x} </Text>
+      {/* <Text>Hello, {x} </Text>
       <FirstComp name={name} getData={getData} />
-      <StatusBar style="auto" />
+      <StatusBar style="auto" /> */}
+      <Login />
     </View>
   );
 }
