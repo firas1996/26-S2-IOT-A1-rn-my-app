@@ -6,6 +6,7 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -16,6 +17,22 @@ const Login = () => {
     setUserData({ ...userData, [name]: value });
   };
   const loginHandler = () => {
+    axios
+      .post("http://10.33.5.4:1234/users/signin", userData)
+      .then((res) => {
+        console.log(res.data.data.token);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    // axios
+    //   .get("http://10.33.5.4:1234/users/")
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
     console.log(userData);
     setUserData({
       email: "",
