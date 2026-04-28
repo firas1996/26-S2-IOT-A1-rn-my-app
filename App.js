@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import FirstComp from "./src/Components/FirstComp";
 import { useState } from "react";
 import Login from "./src/Screens/Login";
+import Register from "./src/Screens/Register";
 
 export default function App() {
   const name = "Firas";
@@ -16,7 +17,8 @@ export default function App() {
       {/* <Text>Hello, {x} </Text>
       <FirstComp name={name} getData={getData} />
       <StatusBar style="auto" /> */}
-      <Login />
+      {/* <Login /> */}
+      <Register />
     </View>
   );
 }
