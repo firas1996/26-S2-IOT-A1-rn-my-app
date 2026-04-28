@@ -23,16 +23,16 @@ const Register = () => {
   };
   const RegisterHandler = () => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        // ...
+        console.log("User Created: ", user);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
+        console.log(errorCode, "-", errorMessage);
       });
 
     console.log(userData);
