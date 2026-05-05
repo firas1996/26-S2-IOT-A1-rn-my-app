@@ -1,33 +1,18 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import FirstComp from "./src/Components/FirstComp";
-import { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
 import Login from "./src/Screens/Login";
 import Register from "./src/Screens/Register";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 export default function App() {
-  const name = "Firas";
-  const [x, setX] = useState("");
-  const getData = (data) => {
-    setX(data);
-    console.log(x);
-  };
+  const Drawer = createDrawerNavigator();
+  const BTab = createBottomTabNavigator();
   return (
-    <View style={styles.container}>
-      {/* <Text>Hello, {x} </Text>
-      <FirstComp name={name} getData={getData} />
-      <StatusBar style="auto" /> */}
-      {/* <Login /> */}
-      <Register />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Login" component={Login} />
+        <Drawer.Screen name="Register" component={Register} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

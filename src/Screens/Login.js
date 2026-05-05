@@ -7,6 +7,11 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import axios from "axios";
+/////////////////////////////////////////////////////////////////////////////////////////
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import firebase from "../../Firebase";
+import "firebase/firestore";
+////////////////////////////////////////////////////////////////////////////////////////
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -17,14 +22,26 @@ const Login = () => {
     setUserData({ ...userData, [name]: value });
   };
   const loginHandler = () => {
-    axios
-      .post("http://10.33.5.4:1234/users/signin", userData)
-      .then((res) => {
-        console.log(res.data.data.token);
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, userData.email, userData.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("User Created: ", user);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, "-", errorMessage);
       });
+    // axios
+    //   .post("http://10.33.5.4:1234/users/signin", userData)
+    //   .then((res) => {
+    //     console.log(res.data.data.token);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
     // axios
     //   .get("http://10.33.5.4:1234/users/")
     //   .then((res) => {
